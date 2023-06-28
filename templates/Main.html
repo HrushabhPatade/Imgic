@@ -1,10 +1,20 @@
-{% extends 'Base.html' %}
+{% extends 'Base.html' %} {% block content %}
 
+<h3>Description for Image to be Generated</h3>
 
+<form method="post" autocomplete="off">
+  {% csrf_token %}
+  <input type="text" class="form-control" name="user_input" />
+  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+</form>
+<br />
 
-{% block content %}
+{% if object %}
+<div>
+  {{object.text}}
+  {{object.generated_image.url}}
+  <br />
+  <img src="{{object.generated_image.url}}" alt="{{object.text}}" />
+</div>
 
-
-
-{% endblock content %}
-
+{% endif %} {% endblock content %}
