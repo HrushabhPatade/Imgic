@@ -10,11 +10,11 @@ openai.api_key = api_key
 
 def generate_image(request):
     obj = None
-    if api_key is not None and request.method == "POST":
-        text = request.POST.get('user_input')
-        print(text)
+    if api_key is not None and request.method == 'POST':
+        user_text = request.POST.get('user_input')
+        print(user_text)
         response = openai.Image.create(
-            prompt = text,
+            prompt = user_text,
         
             size='256x256'
         )
@@ -27,7 +27,7 @@ def generate_image(request):
         count = Image.objects.count() + 1
         fname = f"image-{count}.jpg"
         
-        obj = Image(text=text)
+        obj = Image(text=user_text)
         obj.generated_image.save(fname, img_file)
         obj.save()
         
