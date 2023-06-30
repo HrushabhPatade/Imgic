@@ -12,7 +12,7 @@
 {% if object %}
 <div>
   {{object.text}}
-  {{object.generated_image.url}}
+  {% comment %} {{object.generated_image.url}} {% endcomment %}
   <br>
   <img src="{{object.generated_image.url}}"/>
 </div>
